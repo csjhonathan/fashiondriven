@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+:root {
+    --main: #404EED;
+    --bg: #FCFCFC;
+    --details: #F2F2F2;
+    --darkDetails: #818181;
+    --button: #C4C4C4;
+    --black: #000;
+    --white: #FFF;
+}
+
+.windowHeader {
+    background-color: var(--main);
+    width: 100vw;
+    height: 89px;
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* .logoImg {
+    
+} */
+.logoName {
+    font-family: 'New Rocker', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    margin-left: 16px;
+    color: var(--white);
+}
+
+.container,
+.content,
+.products,
+.landing,
+.modelList,
+.neckList,
+.materialList,
+.elementList,
+.option {
+    display: flex;
+}
+
+.modelList,
+.neckList,
+.materialList {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 160px;
+    width: 40vh;
+}
+
+.container {
+    padding-top: 89px;
+}
+
+.content {
+    width: 100vw;
+}
+
+.products,
+.landing {
+    width: 50vw;
+    height: 78.5vh;
+    align-items: center;
+}
+
+.products {
+    background-color: var(--white);
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.elementList{
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.option {
+    background-color: var(--details);
+    border: 0.5px solid var(--button);
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.option:hover{
+    box-shadow: 2px 2px var(--darkDetails);
+}
+.landing {
+    background-color: var(--main);
+    justify-content: center;
+
+}
+.selected{
+    border: 3px solid var(--main);
+}
+.hidden {
+    display: none;
+}

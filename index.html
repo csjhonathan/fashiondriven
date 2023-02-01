@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="shortcut icon" href="./assets/img/Group177.png" type="image/x-icon" />
+    <script src="./assets/js/main.js" defer></script>
+    <title>FashionDriven</title>
+</head>
+
+<body>
+    <header class="windowHeader">
+        <img src="./assets/img/Group177.png" alt="logo do site" class="logoImg">
+        <p class="logoName">FashionDriven</p>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="products">
+                <div class="model">
+                    <p>Escolha o modelo</p>
+                    <ul class="modelList">
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectModel(this, 't-shirt')">
+                                <img src="./assets/img/tshirt.png" alt="">
+                            </div>
+                            <p>T-shirt</p>
+                        </li>
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectModel(this, 'top-tank')">
+                                <img src="./assets/img/Camiseta.png" alt="">
+                            </div>
+                            <p>Camiseta</p>
+                        </li>
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectModel(this, 'long')">
+                                <img src="./assets/img/Mangalonga.png" alt="">
+                            </div>
+                            <p>Manga longa</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="neck">
+                    <p>Escolha a gola</p>
+                    <ul class="neckList">
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectNeck(this, 'v-neck')">
+                                <img src="./assets/img/GolaV.png" alt="" >
+                            </div>
+                            <p>Gola V</p>
+                        </li>
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectNeck(this, 'round')">
+                                <img src="./assets/img/GolaRedonda.png" alt="" >
+                            </div>
+                            <p>Gola Redonda</p>
+                        </li>
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectNeck(this, 'polo')">
+                                <img src="./assets/img/GolaPolo.png" alt="" >
+                            </div>
+                            <p>Gola Polo</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="material">
+                    <p>Escolha tecido</p>
+                    <ul class="materialList">
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectMaterial(this, 'silk')">
+                                <img src="./assets/img/Seda.png" alt="">
+                            </div>
+                            <p>Seda</p>
+                        </li>
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectMaterial(this, 'cotton')">
+                                <img src="./assets/img/Algodão.png" alt="" >
+                            </div>
+                            <p>Algodão</p>
+                        </li>
+                        <li class = 'elementList'>
+                            <div class="deselected option" onclick="selectMaterial(this, 'polyester')">
+                                <img src="./assets/img/Poliester.png" alt="" >
+                            </div>
+                            <p>Poliéster</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="productsFooter">
+                    <p>Imagem de referência</p>
+                    <input type="url" name="" id="" class="insertLink" placeholder="Insira o link">
+                    <button disabled class="confirmOrder"> confirmar pedido</button>
+                </div>
+            </div>
+            <div class="landing">
+                <img src="./assets/img/ilustração.png" alt="imagem de uma mulher estilosa" class="landingImg">
+            </div>
+        </div>
+        <footer></footer>
+        <div class="modalName hidden">
+            <label for=''>Qual seu nome?</label>
+            <input type="text" name="" id="" placeholder="digite seu nome">
+            <button><ion-icon name="checkmark-done-outline"></ion-icon></button>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
