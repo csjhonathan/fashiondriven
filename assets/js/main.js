@@ -1,57 +1,41 @@
+const container = document.querySelector('.container');
+const modalLogin = document.querySelector('.modalLogin')
 const modelSection = document.querySelector('.model');
 const neckSection = document.querySelector('.neck');
 const materialSection = document.querySelector('.material');
-const lastOrderList = document.querySelector('.lastOrderList')
-const confirmOrderBtn = document.querySelector('.confirmOrder')
-const axiosUrl = 'https://mock-api.driven.com.br/api/v4/shirts-api/shirts/'
-// const sayYourNameModal = document.querySelector('.sayYourName');
-// const sayYourNameModalBtn = document.querySelector('.sayYourName button');
-// const sayYourNameModalInput = document.querySelector('.sayYourName input');
-
-
+const lastOrderList = document.querySelector('.lastOrderList');
+const confirmOrderBtn = document.querySelector('.confirmOrder');
+const axiosUrl = 'https://mock-api.driven.com.br/api/v4/shirts-api/shirts/';
+const loginButton = document.querySelector('.loginButton');
+const loginInput = document.querySelector('.loginInput')
 
 const order = {
     model: '',
     neck: '',
     material: '',
     image: '',
-    owner: 'Jhon',
-    author: 'Jhon',
+    owner: '',
+    author: '',
 }
-
-// const sayYourName = () => {
-
-//     if(!sayYourNameModal.classList.contains('hidden')){
-//         sayYourNameModal.classList.add('hidden')
-//     } else {
-//         sayYourNameModal.classList.remove('hidden')
-//     }
-    
-    
-//     if(sayYourNameModalInput.value !== ''){
-//         order.owner = sayYourNameModalInput.value;
-//         order.author = sayYourNameModalInput.value;
-//     }
-// }
-// sayYourName();
 
 const getLastOrders = () => {
     axios
         .get(axiosUrl)
         .then(response => {
-            
-            showLastOrders(response.data)
+            modalLogin.classList.add('hidden');
+            container.classList.remove('hidden');
+            showLastOrders(response.data);
         })
         .catch(response => console.log(response))
 }
-getLastOrders()
+
 const showLastOrders = (lastOrders) => {
     lastOrderList.innerHTML = '';
-    for(let i = 0; i< lastOrders.length; i++){
+    for (let i = 0; i < lastOrders.length; i++) {
         const id = lastOrders[i].id;
         const image = lastOrders[i].image;
         const material = lastOrders[i].material;
-        const model = lastOrders [i].model;
+        const model = lastOrders[i].model;
         const neck = lastOrders[i].neck;
         const owner = lastOrders[i].owner;
         lastOrderList.innerHTML += `
@@ -98,14 +82,14 @@ const selectMaterial = (elemento, tecido) => {
     checkOrder()
 }
 const checkOrder = () => {
-    if(order.model && order.neck && order.material && order.image){
+    if (order.model && order.neck && order.material && order.image) {
         confirmOrderBtn.removeAttribute('disabled')
         confirmOrderBtn.classList.remove('disabled')
         confirmOrderBtn.classList.add('enabled')
         return
     }
 
-    if(!order.model || !order.neck || !order.material || !order.image){
+    if (!order.model || !order.neck || !order.material || !order.image) {
         confirmOrderBtn.setAttribute('disabled', '')
         confirmOrderBtn.classList.remove('enabled')
         confirmOrderBtn.classList.add('disabled')
@@ -114,19 +98,19 @@ const checkOrder = () => {
 }
 
 const inputValidator = input => {
-    
+
     const inputClasslist = input.classList;
     const inputValue = input.value;
 
-    if(inputClasslist.contains('insertLink')){
+    if (inputClasslist.contains('insertLink')) {
 
-        if (inputValue.startsWith('https://') 
-        || inputValue.startsWith('http://')) {
+        if (inputValue.startsWith('https://')
+            || inputValue.startsWith('http://')) {
 
-            if (inputValue.includes('.jpg') 
-            || inputValue.includes('.jpeg') 
-            || inputValue.includes('.png') 
-            || inputValue.includes('.webp')) {
+            if (inputValue.includes('.jpg')
+                || inputValue.includes('.jpeg')
+                || inputValue.includes('.png')
+                || inputValue.includes('.webp')) {
 
                 order.image = input.value;
                 checkOrder();
@@ -144,36 +128,56 @@ const inputValidator = input => {
             checkOrder();
             return false
         }
-    
+
+    }
+
+    if (inputClasslist.contains('loginInput')) {
+        if (inputValue) {
+            order.author = inputValue;
+            order.owner = inputValue;
+            loginButton.removeAttribute('Disabled');
+            loginButton.classList.add('enabledLoginButton');
+            loginButton.classList.remove('disabled');
+        } else {
+            order.author = '';
+            order.owner = '';
+            loginButton.setAttribute('Disabled', '');
+            loginButton.classList.remove('enabledLoginButton');
+            loginButton.classList.add('disabled');
+        }
     }
 }
+const loginIn = () => {
+    modalLogin.innerHTML = '<img class="loading" src="./assets/img/loagindRight.svg" alt="">'
+    getLastOrders();
+}
 
-const confirmOrder = () =>{
+const confirmOrder = () => {
     const selectedModel = modelSection.querySelector('.selected');
     const selectedNeck = neckSection.querySelector('.selected');
     const selectedMaterial = materialSection.querySelector('.selected');
     const insertLink = document.querySelector('.insertLink')
     axios
         .post(axiosUrl, order)
-        .then(() =>{
+        .then(() => {
             getLastOrders();
             alert('Encomenda realizada');
-            
-            if(insertLink.value !==''){
+
+            if (insertLink.value !== '') {
                 insertLink.value = ''
             }
 
-            if(selectedModel){
+            if (selectedModel) {
                 selectedModel.classList.remove('selected');
             }
-            if(selectedNeck ){
+            if (selectedNeck) {
                 selectedNeck.classList.remove('selected');
             }
-            
-            if(selectedMaterial){
+
+            if (selectedMaterial) {
                 selectedModel.classList.remove('selected');
             }
-            
+
             confirmOrderBtn.setAttribute('Disabled', '');
             confirmOrderBtn.classList.remove('enabled');
             confirmOrderBtn.classList.add('disabled');
@@ -201,12 +205,12 @@ const selectShirt = shirt => {
     order.image = image;
     order.owner = order.author;
 
-    if(confirm('Deseja realizar este pedido?')){
+    if (confirm('Deseja realizar este pedido?')) {
         console.log('sim')
         console.log(order)
         confirmOrder();
-        
-    }else{
+
+    } else {
         order.model = '';
         order.neck = '';
         order.material = '';
@@ -216,11 +220,10 @@ const selectShirt = shirt => {
         console.log(order)
     }
 }
-// sayYourNameModalBtn.addEventListener('click', e => {
-    
-//     if(sayYourNameModalInput.value === ''){
-//         alert('preencha este campo')
-//         return
-//     }
-//     sayYourName();
-// })
+
+
+loginInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        loginIn();
+    }
+})
