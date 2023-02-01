@@ -26,7 +26,7 @@ const getLastOrders = () => {
             container.classList.remove('hidden');
             showLastOrders(response.data);
         })
-        .catch(response => console.log(response))
+        .catch(response => alert("Erro ao carregar os ultimos pedidos"))
 }
 
 const showLastOrders = (lastOrders) => {
@@ -159,8 +159,9 @@ const confirmOrder = () => {
     const insertLink = document.querySelector('.insertLink')
     axios
         .post(axiosUrl, order)
-        .then(() => {
+        .then(response => {
             getLastOrders();
+            
             alert('Encomenda realizada');
 
             if (insertLink.value !== '') {
@@ -203,11 +204,9 @@ const selectShirt = shirt => {
     order.neck = neck;
     order.material = material;
     order.image = image;
-    order.owner = order.author;
+    order.owner = owner;
 
     if (confirm('Deseja realizar este pedido?')) {
-        console.log('sim')
-        console.log(order)
         confirmOrder();
 
     } else {
@@ -216,8 +215,6 @@ const selectShirt = shirt => {
         order.material = '';
         order.image = '';
         order.owner = '';
-        console.log('não')
-        console.log(order)
     }
 }
 
